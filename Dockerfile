@@ -1,6 +1,6 @@
 # Amazon Glacier CLI installed on Ubuntu
 FROM ubuntu:latest
-MAINTAINER Folix Goldmann <folix@posteo.de>
+MAINTAINER Thomas Goldbrunner <thomas.goldbrunner@posteo.de>
 
 # install git and pip
 RUN apt-get update && apt-get install -y python-pip git \
