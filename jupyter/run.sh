@@ -10,6 +10,6 @@ fi
 docker stop notebook &>/dev/null && docker rm notebook >/dev/null
 
 docker run -d -p 8888:8888 -v $NOTEBOOK_DIR:/home/jovyan/work --name notebook \
-           -e NB_UID=$(id -u) --user root jupyter/base-notebook && \
+           -e NB_UID=$(id -u) --user root jupyter/scipy-notebook && \
            echo 'Jupyter notebook server is running at: http://localhost:8888'; \
            echo 'Notebook directory is '$NOTEBOOK_DIR''
