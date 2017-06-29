@@ -7,8 +7,15 @@ RUN apt-get update \
 && apt-get install -y software-properties-common \
 && apt-add-repository -y ppa:ansible/ansible \
 && apt-get update \
-&& apt-get install -y ansible
+&& apt-get install -y ansible git
 
+RUN git clone https://github.com/folixg/dot-files.git /root/dot-files \
+    && cd /root/dot-files \
+    && git submodule init \
+    && git submodule update 
+
+RUN cd /root/dot-files/playbooks \
+    && ansible-playbook -i inventory docker.yml
 
 # cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
