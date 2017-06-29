@@ -4,27 +4,8 @@ Dockerfile for automated builds on [Dockerhub](https://hub.docker.com/r/folixg/u
 Pull command: ```docker pull folixg/ubuntu```
 
 Following steps are taken:
-1. Install git
+1. Install git and ansible
 2. Clone my [dot-files](https://github.com/folixg/dot-files) repository
-3. Perform the software installation and configuration specified
- in [setup.sh](https://github.com/folixg/dot-files/blob/master/setup.sh)
+3. Run the ansible playbook [docker.yml](https://github.com/folixg/dot-files/blob/master/playbooks/docker.yml) 
+on localhost.
 
-Additional packages installed via apt:
-- git
-- vim
-- curl
-- zsh
-- gnupg2
-- python3-pip
-- shellcheck
-
-Additional software installed otherwise:
-- flake8 (via pip)
-- golang 1.8.3 (via [golang.org](https://golang.org/dl/))
-
-Configuration is done for:
-- zsh
-- bash
-- vim
-- gpg
-- git
