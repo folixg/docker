@@ -14,7 +14,7 @@ RUN git clone https://github.com/folixg/dot-files.git /root/dot-files \
     && git submodule init \
     && git submodule update 
 
-RUN cd /root/dot-files/playbooks \
+RUN cd /root/dot-files/install/playbooks \
     && ansible-playbook -i inventory docker.yml
 
 # cleanup
