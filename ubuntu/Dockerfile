@@ -7,12 +7,23 @@ RUN apt-get update \
 && apt-get install -y software-properties-common \
 && apt-add-repository -y ppa:ansible/ansible \
 && apt-get update \
-&& apt-get install -y ansible git
+&& apt-get install -y ansible git sudo
 
-RUN git clone https://github.com/folixg/dot-files.git /root/dot-files 
+# create user
+RUN useradd --create-home --shell /usr/bin/zsh folix
+RUN adduser folix sudo
+RUN echo "folix ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
+USER folix
 
-RUN cd /root/dot-files/install/ansible \
+# installation using ansible
+RUN git clone https://github.com/folixg/dot-files.git /home/folix/dot-files 
+RUN cd /home/folix/dot-files/install/ansible \
     && ansible-playbook -i inventory docker.yml
 
 # cleanup
+USER root
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# switch user
+USER folix
+WORKDIR /home/folix
