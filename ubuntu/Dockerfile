@@ -27,3 +27,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # switch user
 USER folix
 WORKDIR /home/folix
+
+# start zsh
+ENTRYPOINT /usr/bin/zsh
